@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap');
+
+:root{
+    --primary-color:rgb(66, 139, 66);
+}
+
+body{
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    font-family: 'Gaegu', cursive;
+}
+
+.input-bdy{
+    font-family: 'Gaegu', cursive;
+    display: block;
+    width: 240px;
+    padding: .5rem;
+    margin: 2rem auto;
+    font-size: larger;
+}
+
+.btn-check{
+    font-family: 'Gaegu', cursive;
+    font-size: large;
+    width: 150px;
+    padding: .4rem;
+    display: block;
+    margin: 1rem auto;
+}
+
+.msg-to-user{
+    font-size: x-large;
+}
+
+footer{
+    margin-top: 4rem;
+}
+
+footer ul{
+   padding-inline-start: 0px;
+}
+.socials{
+    list-style: none;
+    display: inline;
+    padding: 2rem;
+    padding: 1rem;
+}
