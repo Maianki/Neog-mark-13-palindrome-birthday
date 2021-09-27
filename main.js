@@ -28,7 +28,7 @@ function convertDateToStr(date){
     if(date.month < 10){
         dateStr.month = '0' + date.month
     }else{
-        date.month = date.month.toString()
+        dateStr.month = date.month.toString()
     }
 
     dateStr.year = date.year.toString()
@@ -40,8 +40,8 @@ function datesAllFormats(date){
 
     var dateStr = convertDateToStr(date)
 
-    var ddmmyyyy = dateStr.day+dateStr.month+dateStr.year
-    var mmddyyyy = dateStr.month+dateStr.day+dateStr.year
+    var ddmmyyyy = dateStr.day + dateStr.month + dateStr.year
+    var mmddyyyy = dateStr.month + dateStr.day + dateStr.year
     var yyyymmdd = dateStr.year + dateStr.month + dateStr.day
     var ddmmyy = dateStr.day + dateStr.month + dateStr.year.slice(-2)
     var mmddyy = dateStr.month + dateStr.day + dateStr.year.slice(-2)
@@ -128,14 +128,24 @@ function getNextPalindromeDate(date){
         var isPalindrome = checkPalindrome(nextDate)
         if(isPalindrome){
             break;
-        }else{
-            nextDate = getNextDate(nextDate)
         }
+        nextDate = getNextDate(nextDate)
     }
     return [count,nextDate]
 }
 
-function btnCheckEventListener(){
+/**
+ * function getPreviousDate(date){
+    var day = date - 1;
+    var month = date.month;
+    var year = date.year;
+
+    var noOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+}
+ */
+
+function btnCheckEventListener(e){
     
     var date = dob.value
     
@@ -154,7 +164,7 @@ function btnCheckEventListener(){
             displayOutput.innerText = "Hurray! your birthday is a palindrome! 🎉✨"
         }else{
             var [count, nextDate] = getNextPalindromeDate(birthday)
-            console.log(count,nextDate)
+            //console.log(count,nextDate)
             displayOutput.innerText = `Alas! your birthday is not Palindrome😥.You missed it by ${count} days. The next Palindrome date is ${nextDate.day} - ${nextDate.month} - ${nextDate.year}`
         }
 
