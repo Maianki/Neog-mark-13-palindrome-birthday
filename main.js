@@ -15,20 +15,22 @@ function isPalindrome(str){
     }
 }
 
-function convertNumberToStr(date){
+function convertDateToStr(date){
 
     var dateStr = { day: '', month: '', year: '' };
 
     if(date.day<10){
         dateStr.day = '0' + date.day
+    }else{
+        dateStr.day = date.day.toString()
     }
 
     if(date.month < 10){
         dateStr.month = '0' + date.month
+    }else{
+        date.month = date.month.toString()
     }
 
-    dateStr.day = date.day.toString()
-    dateStr.month = date.month.toString()
     dateStr.year = date.year.toString()
 
     return dateStr
@@ -36,7 +38,7 @@ function convertNumberToStr(date){
 
 function datesAllFormats(date){
 
-    var dateStr = convertNumberToStr(date)
+    var dateStr = convertDateToStr(date)
 
     var ddmmyyyy = dateStr.day+dateStr.month+dateStr.year
     var mmddyyyy = dateStr.month+dateStr.day+dateStr.year
@@ -76,7 +78,8 @@ function isLeapYear(year){
         }
     }
 }
- 
+
+
 function getNextDate(date){
     var day = date.day + 1
     var month = date.month
@@ -147,7 +150,6 @@ function btnCheckEventListener(){
 
         var isPalindrome = checkPalindrome(birthday)
 
-        console.log(isPalindrome)
         if(isPalindrome){
             displayOutput.innerText = "Hurray! your birthday is a palindrome! 🎉✨"
         }else{
@@ -156,7 +158,7 @@ function btnCheckEventListener(){
             displayOutput.innerText = `Alas! your birthday is not Palindrome😥.You missed it by ${count} days. The next Palindrome date is ${nextDate.day} - ${nextDate.month} - ${nextDate.year}`
         }
 
-    } else{
+     }else{
         displayOutput.innerText = "Please choose a valid date."
     } 
 }
