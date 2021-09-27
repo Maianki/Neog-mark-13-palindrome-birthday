@@ -134,18 +134,64 @@ function getNextPalindromeDate(date){
     return [count,nextDate]
 }
 
-/**
- * function getPreviousDate(date){
-    var day = date - 1;
+
+ function getPreviousDate(date){
+    var day = date.day - 1;
     var month = date.month;
     var year = date.year;
 
     var noOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-}
- */
+    if(month === 3){
+        if(isLeapYear(year)){
+            if(day < 1){
+                day = 29
+                month--
+            }
+        }
+        else{
+            if(day < 1){
+                day = 28
+                month--
+            }
+        }
+    }else{ // 1 2 4 5 6 7 8 9 10 11 12
+        if(day < 1){ 
+            if(month===1){
+                day = 31
+                month = 12
+                year--
+            }else{
+                month--
+                day = noOfDaysInMonth[month-1]
+            }
+        }
+    }
 
-function btnCheckEventListener(e){
+    return {
+        day:day,
+        month:month,
+        year:year
+    }
+
+}
+ 
+function getPreviousPalindromeDate(date){
+    var count = 0
+    var prevDate = getPreviousDate(date);
+
+    while(1){
+        count++
+        if(checkPalindrome(prevDate)){
+            break;
+        }
+
+        prevDate = getPreviousDate(prevDate)
+    }
+    return [count,prevDate]
+}
+
+function btnCheckEventListener(){
     
     var date = dob.value
     
@@ -163,9 +209,15 @@ function btnCheckEventListener(e){
         if(isPalindrome){
             displayOutput.innerText = "Hurray! your birthday is a palindrome! 🎉✨"
         }else{
-            var [count, nextDate] = getNextPalindromeDate(birthday)
-            //console.log(count,nextDate)
-            displayOutput.innerText = `Alas! your birthday is not Palindrome😥.You missed it by ${count} days. The next Palindrome date is ${nextDate.day} - ${nextDate.month} - ${nextDate.year}`
+            var [countNext, nextDate] = getNextPalindromeDate(birthday)
+            var [countPrev, previousDate] = getPreviousPalindromeDate(birthday)
+            
+            if(countNext < countPrev){
+                displayOutput.innerText = `Alas! your birthday is not Palindrome😥.You missed it by ${countNext} days. The nearest Palindrome date is ${nextDate.day} - ${nextDate.month} - ${nextDate.year}`
+            }else{
+                displayOutput.innerText = `Alas! your birthday is not Palindrome😥.You missed it by ${countPrev} days. The nearest Palindrome date is ${previousDate.day} - ${previousDate.month} - ${previousDate.year}`
+            }
+            
         }
 
      }else{
